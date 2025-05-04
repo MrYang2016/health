@@ -3,6 +3,7 @@ import { LineChart } from './components/LineChart';
 import { ProgressRing } from './components/ProgressRing';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Calendar, Utensils, Dumbbell, Award } from 'lucide-react-native';
+import React from 'react';
 
 export default function DashboardScreen() {
   return (

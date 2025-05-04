@@ -1,6 +1,7 @@
 import { Tabs } from 'expo-router';
 import { Platform } from 'react-native';
 import { Chrome as Home, Calendar, SquareActivity as ActivitySquare, CircleUser as UserCircle, BookOpen } from 'lucide-react-native';
+import React from 'react';
 
 export default function TabLayout() {
   return (

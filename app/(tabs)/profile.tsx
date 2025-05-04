@@ -2,19 +2,45 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity, Image, TextInput, Platform, Switch, Alert } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { User, Bell, Upload, Settings, ChevronRight, ShieldCheck, LogOut, CircleHelp as HelpCircle } from 'lucide-react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export default function ProfileScreen() {
   const [isEditing, setIsEditing] = useState(false);
-  const [profileData, setProfileData] = useState({
-    name: 'Sarah Johnson',
-    email: 'sarah.johnson@example.com',
-    height: '165',
-    weight: '62',
-    birthday: '05/14/1990',
-    gender: 'Female',
-    goals: 'Weight management, Increase energy',
-    allergies: 'Peanuts, Shellfish',
-    medicalConditions: 'None',
+  const [profileData, setProfileData] = useState(() => {
+    // 初始默认值
+    const defaultData = {
+      name: '',
+      email: '',
+      height: '165',
+      weight: '62',
+      birthday: '05/14/1990',
+      gender: 'Female',
+      goals: 'Weight management, Increase energy',
+      allergies: 'Peanuts, Shellfish',
+      medicalConditions: 'None',
+    };
+    
+    // 尝试从AsyncStorage获取用户信息
+    const loadUserData = async () => {
+      try {
+        const userData = await AsyncStorage.getItem('user');
+        if (userData) {
+          const parsedUser = JSON.parse(userData);
+          setProfileData({
+            ...defaultData,
+            name: parsedUser.fullName?.givenName && parsedUser.fullName?.familyName ? 
+                  `${parsedUser.fullName.givenName} ${parsedUser.fullName.familyName}` : 
+                  'User',
+            email: parsedUser.email || '',
+          });
+        }
+      } catch (error) {
+        console.error('Failed to load user data:', error);
+      }
+    };
+    
+    loadUserData();
+    return defaultData;
   });
   
   const [notificationSettings, setNotificationSettings] = useState({

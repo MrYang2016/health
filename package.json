@@ -5,15 +5,18 @@
   "private": true,
   "scripts": {
     "dev": "EXPO_NO_TELEMETRY=1 expo start",
+    "dev:ios": "EXPO_NO_TELEMETRY=1 expo start --ios",
     "build:web": "expo export --platform web",
     "lint": "expo lint"
   },
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@lucide/lab": "^0.1.2",
+    "@react-native-async-storage/async-storage": "^2.1.2",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
     "expo": "52.0.33",
+    "expo-apple-authentication": "^7.2.4",
     "expo-blur": "^14.0.3",
     "expo-camera": "^16.0.18",
     "expo-constants": "^17.0.5",

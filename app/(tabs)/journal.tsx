@@ -39,7 +39,7 @@ export default function JournalScreen() {
     }
     
     const today = new Date();
-    const options = { month: 'long', day: 'numeric', year: 'numeric' };
+    const options: Intl.DateTimeFormatOptions = { month: 'long', day: 'numeric', year: 'numeric' };
     const formattedDate = today.toLocaleDateString('en-US', options);
     
     const newEntry = {
